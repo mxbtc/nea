@@ -1,0 +1,32 @@
+#navbar {
+    width: calc(100% - 30px);
+    background-color: #00000000;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#icon {
+}
+
+#links {
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+#links > li {
+    padding: 0px 10px;
+}
+
+#logout, #login {
+    padding: 10px 15px;
+    border-radius: 25px;
+}
+
+#login {
+    background-color: #ff5e60;
+}

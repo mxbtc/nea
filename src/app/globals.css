@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
+
+:root {
+  
+}
+
+body {
+  font-family: 'Inclusive Sans';
+  margin: 0;
+  background-color: #001220;
+  color: hsl(0, 0%, 93%);
+}
