@@ -42,9 +42,9 @@ export default function Home({searchParams}) {
         }
       )
 
-      redirect('/auth/login')
-
      }
+
+     redirect('/')
     
   }
 
