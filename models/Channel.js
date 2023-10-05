@@ -8,7 +8,11 @@ const channelSchema = new mongoose.Schema(
 		},
         channelID: {
             type: Number
-        }
+        },
+		password: {
+			type: String,
+			required: true
+		}
 	}
 )
 

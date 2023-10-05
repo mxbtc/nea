@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^2.0.0",
+    "awesome-toast-component": "^2.0.6",
+    "bootstrap-icons": "^1.11.1",
     "mongodb": "^6.1.0",
     "mongoose": "^7.5.1",
     "next": "13.4.19",
     "next-auth": "^4.23.1",
     "react": "18.2.0",
+    "react-bootstrap-icons": "^1.10.3",
     "react-dom": "18.2.0"
   }
 }

@@ -3,6 +3,8 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "../../../../../lib/mongodb"
 import dbConnect from "../../../../../lib/dbConnect"
+import { Model, Models, model } from "mongoose"
+import User from "../../../../../models/User.js"
 
 const authOptions = {
   pages: {
@@ -14,14 +16,17 @@ const authOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "Aaron" },
+        email: { label: "Email", type: "email"},
+        username: { label: "Username", type: "text"},
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Find your user in the database using MongoDBAdapter
-        const user = await authOptions.adapter.getUser(
-          "6471f710f772cf139bc5142e"
-        );
+        const { email, username, password } = credentials
+
+        await dbConnect();
+
+        const user = await User.fin
+
         if (user) {
           return user;
         } else {

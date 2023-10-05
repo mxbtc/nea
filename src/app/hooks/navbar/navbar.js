@@ -18,7 +18,7 @@ function LoginButton () {
         )
     } else {
         return (
-            <li>
+            <li >
                 <div id={styles.login} onClick={() => signIn()}>Login</div> or <a href={"/auth/signup"}  id={styles.signUp} onClick={() => redirect('/auth/signup')}>Sign Up</a>
             </li>
         )
