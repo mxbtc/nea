@@ -6,6 +6,14 @@ import { useState, useEffect } from 'react'
 import Toast from 'awesome-toast-component'
 
 export default function SignUpForm ({searchParams}) {
+  const [isClient, setClient] = useState(false);
+  useEffect(()=>{
+    setClient(true)
+  }, [])
+  return isClient ? <SUForm searchParams={searchParams}/> : <></>
+}
+
+function SUForm ({searchParams}) {
   'use client'
 
   const [showPass, setShowPass] = useState(false)
@@ -32,41 +40,41 @@ export default function SignUpForm ({searchParams}) {
     }
   }
 
-    return <div suppressHydrationWarning={true}>
+    return <div suppressHydrationWarning>
             <div className={styles.sUFInput}>
               <label>Username</label>
-              <input suppressHydrationWarning={true} type="text" required name="username" onChange={e => setUser(e.target.value)}
+              <input suppressHydrationWarning type="text" required name="username" onChange={e => setUser(e.target.value)}
               style={{borderBottom:`2px solid ${username.length >= 3 || username === 1 ? "hsl(0, 0%, 80%)" : "red"}`}}
               ></input>
               <div>
-                <span suppressHydrationWarning={true} style={{color:`${username.length >= 3 ? "green" : "red"}`}}>Length at least 3 characters</span>
-                <span suppressHydrationWarning={true} style={{color:`${/^[a-zA-Z0-9]+$/.test(username) ? "green" : "red"}`}}>Only Alphanumeric</span>
+                <span suppressHydrationWarning style={{color:`${username.length >= 3 ? "green" : "red"}`}}>Length at least 3 characters</span>
+                <span suppressHydrationWarning style={{color:`${/^[a-zA-Z0-9]+$/.test(username) ? "green" : "red"}`}}>Only Alphanumeric</span>
               </div>
             </div>
             <div className={styles.sUFInput}>
               <label>
                 Password 
-                <button type="button">
-                <ShowPassword suppressHydrationWarning={true}/>
-                </button>
+                {/* <button type="button"> */}
+                <ShowPassword suppressHydrationWarning/>
+                {/* </button> */}
               </label>
-              <input suppressHydrationWarning={true} required id="pword" type={showPass ? "text" : "password"} name="password"
+              <input suppressHydrationWarning required id="pword" type={showPass ? "text" : "password"} name="password"
               onChange={e => setPass((e.target.value))}
               ></input>
               <div>
-                <span suppressHydrationWarning={true} style={{color:`${pass.length >= 8 ? "green" : "red"}`}}>Length at least 8 characters</span>
-                <span suppressHydrationWarning={true} style={{color:`${pass.toLowerCase() !== pass ? "green" : "red"}`}}>Capital letter</span>
-                <span suppressHydrationWarning={true} style={{color:`${/[0-9]/gi.test(pass) ? "green" : "red"}`}}>Number</span>
+                <span suppressHydrationWarning style={{color:`${pass.length >= 8 ? "green" : "red"}`}}>Length at least 8 characters</span>
+                <span suppressHydrationWarning style={{color:`${pass.toLowerCase() !== pass ? "green" : "red"}`}}>Capital letter</span>
+                <span suppressHydrationWarning style={{color:`${/[0-9]/gi.test(pass) ? "green" : "red"}`}}>Number</span>
               </div>
             </div>
             <div className={styles.sUFInput}>
               <label>Confirm Password</label>
-              <input suppressHydrationWarning={true} required type="password" name="cpassword"
+              <input suppressHydrationWarning required type="password" name="cpassword"
               style={{borderBottom:`2px solid ${confPass === pass || confPass === 1 ? "hsl(0, 0%, 80%)" : "red"}`}}
               onChange={e => setConfPass((e.target.value))}></input>
             </div>
             <div className={styles.sUFInput}>
-              <button suppressHydrationWarning={true} type="submit" name="submit" disabled={
+              <button suppressHydrationWarning type="submit" name="submit" disabled={
                 username.length >= 3
                 && /^[a-zA-Z0-9]+$/.test(username)
                 && /[0-9]/gi.test(pass) 

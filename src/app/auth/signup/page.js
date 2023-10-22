@@ -7,11 +7,6 @@ import { redirect } from 'next/navigation'
 import SignUpForm from './signupform'
 import dbConnect from '../../../../lib/dbConnect'
 import Users from '../../../../models/User'
-import Toast from 'awesome-toast-component'
-
-function errorToast () {
-  new Toast("User exists")
-}
 
 export default function Home({searchParams}) {
   
@@ -48,7 +43,7 @@ export default function Home({searchParams}) {
 
      
     
-  }
+  } 
 
   return <div>
     <div id={styles.signUpPage}>
@@ -58,8 +53,8 @@ export default function Home({searchParams}) {
         </div>
         <div id={styles.signUpFormHolder}>
           <h1>Sign Up</h1>
-          <form id={styles.signUpForm} action={submitData} suppressHydrationWarning={true}>
-            <SignUpForm suppressHydrationWarning={true} searchParams={searchParams}/>
+          <form id={styles.signUpForm} action={submitData} suppressHydrationWarning>
+            <SignUpForm suppressHydrationWarning searchParams={searchParams}/>
           </form>
         </div>
       </div>
