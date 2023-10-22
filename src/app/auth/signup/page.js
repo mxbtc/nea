@@ -42,9 +42,11 @@ export default function Home({searchParams}) {
         }
       )
 
+      redirect('/')
+
      }
 
-     redirect('/')
+     
     
   }
 
