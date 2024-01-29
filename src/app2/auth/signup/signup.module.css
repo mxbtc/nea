@@ -1,0 +1,167 @@
+#signUpPage {
+    min-width: 100vw;
+    min-height: 100vh;
+    padding:0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#return {
+    position: absolute;
+    top: 3em;
+}
+
+#signUpModule {
+    height: 500px;
+    width: 600px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    overflow: hidden;
+    box-shadow: 0 0 50px 5px #ff4e4e;
+    animation: animateBS 5s infinite;
+}
+
+@keyframes animateBS {
+    0% {
+        box-shadow: 0 0 50px 5px #ff4e4e;
+    }
+    33% {
+        box-shadow: 0 0 50px 5px #8296ff;
+    }
+    100% {
+        box-shadow: 0 0 50px 5px #ff4e4e;
+    }
+}
+
+#signUpFormHolder {
+    background-color: #f3f3f3;
+    padding: 10px 20px;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+
+#signUpFormHolder > h1 {
+    margin: 0;
+    color: #252525;
+    font-size: 40px;
+    transform: translateY(30px);
+}
+
+#signUpForm {
+    margin-top: 20px;
+    height: 100%;
+
+    color: #252525;
+    font-size: 13px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.sUFInput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sUFInput > label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    color:hsl(0, 0%, 35%);
+    margin-bottom: 3px;
+    margin-left: 2px;
+    margin-top: 20px;
+}
+
+.sUFInput > label > button {
+    width: 25px;
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sUFInput > label > button > svg {
+    width: 25px;
+    padding: 1px 2px;
+}
+
+.sUFInput > input {
+    border: none;
+    padding: 5px 2px;
+    background: none;
+    border-bottom: 2px solid hsl(0, 0%, 80%);
+    transition: border 100ms;
+}
+
+.sUFInput > input:focus {
+    outline: none;
+    border-bottom: 2px solid #767676;
+}
+
+.sUFInput > div {
+    display: grid;
+    margin-top: 5px;
+    font-size: 10px;
+    gap: 3px;
+}
+
+.sUFInput > button {
+    margin-top: 0px;
+    transform: translateY(50px);
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px 1px;
+    background-color: #070723;
+    color: #cccccc;
+    justify-self: flex-end;
+    font-size: 16px;
+    transition: all;
+}
+
+.sUFInput > button:disabled {
+    cursor: no-drop;
+    color: rgb(103, 103, 103);
+}
+
+#signUpImageHolder {
+    background-image: url('../../../../public/signup.svg');
+    background-size: auto 100%;
+    background-position: center;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#signUpImageHolder > a {
+    display: flex;
+    align-items: center;
+    height: min-content;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #a8a8a8;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+#signUpImageHolder > a > svg {
+    padding-right: 5px;
+    width: 18px;
+    height: 18px;
+}
+
+#signUpImage {
+    height: 100%;
+}

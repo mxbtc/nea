@@ -33,6 +33,7 @@ export default function Home({searchParams}) {
         {
           username: formData.get('username'),
           password: hash,
+          channels: []
         }
       )
 

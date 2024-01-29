@@ -3,4 +3,6 @@
 body {
   font-family: 'Inclusive Sans';
   margin: 0;
+  background-color: #001220;
+  color: hsl(0, 0%, 93%);
 }

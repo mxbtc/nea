@@ -1,47 +1,46 @@
 'use client'
 
 import styles from './navbar.module.css'
-import Image from 'next/image'
-import { useSession, signIn, signOut, SessionProvider } from "next-auth/react"
-import Link from 'next/link'
-import { permanentRedirect, redirect } from 'next/navigation'
+import Image from 'next/image';
 
-function LoginButton () {
+function SessionButtons () {
+    // This function will return different components depending on whether the user is logged in or not
 
-    const { data : session } = useSession()
+    // For the prototype, the user will be logged out
+    let session = false;
 
-    if (session) {
-        return (
-            <li>
-                <div id={styles.logout} onClick={() => signOut()}>Log Out</div>
-            </li>
-        )
-    } else {
-        return (
-            <li >
-                <div id={styles.login} onClick={() => signIn()}>Login</div><a href={"/auth/signup"}  id={styles.signUp} onClick={() => redirect('/auth/signup')}>Sign Up</a>
-            </li>
-        )
-    }
+    // If the user is logged out, the user will see the log in and sign up button
+    // If the user is signed in, the user will see the log out and dashboard button
+    return !session ?
+        [
+            <li key={"link"} className={styles.link}><button>Log In</button></li>,
+            <li key={"link"} className={styles.link}><button>Sign Up</button></li>
+        ]
+        : 
+        [
+            <li key={"link"} className={styles.link}><button>Log Out</button></li>,
+            <li key={"link"} className={styles.link}><button>Dashboard</button></li>
+        ]
 
 }
-
+// Navbar to be returned
 export default function NavBar () {
-    return <div id={styles.navbar}>
-        <SessionProvider>
-        <div id={styles.icon}>
-            <Image 
-            src='/nextjs.png'
-            width={50}
-            height={50}
-            alt="Logo"
-            id={styles.logo}
-            />
+    return (
+        <div id={styles.navbar}>
+            {/* Logo Placeholder */}
+            <div className={styles.logo}>
+                <Image src="./logoWhiteOnBlack.svg" width={50} height={50} alt="Logo"/>
+            </div>
+            {/* Links */}
+            <div className={styles.linksParent}>
+                <ul className={styles.linksContainer}>
+                    <li className={styles.link}>
+                        <a href="/">Home</a>
+                    </li>
+                    {/* Buttons based on user session state */}
+                    <SessionButtons/>
+                </ul>
+            </div>
         </div>
-        <ul id={styles.links}>
-            <li>Home</li>
-            <LoginButton/>
-        </ul>
-        </SessionProvider>
-    </div>
+    )
 }
