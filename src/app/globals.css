@@ -1,5 +1,6 @@
+/* Import font from google */
 @import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
-
+/* Global CSS */
 body {
   font-family: 'Inclusive Sans';
   margin: 0;

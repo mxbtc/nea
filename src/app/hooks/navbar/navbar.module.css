@@ -1,28 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
-
-
+/* Navbar wrapper */
 #navbar {
-    width: calc(100% - 20px);
+    /* Variable so we can change this later if needed */
+    --nav-padding: 10px;
     padding: var(--nav-padding);
+    /* Width to span entire width - 2x the padding */
+    width: 100% - calc(2 * var(--nav-padding));
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
 }
-
 /* Links section */
-
 .linksContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     list-style-type: none;
 }
-
+/* Individual links */
 .link {
     margin: 0px 10px;
 }
-
+/* <a> within a link */
 .link > a {
     color: inherit;
     text-decoration: none;

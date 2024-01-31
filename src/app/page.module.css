@@ -1,0 +1,18 @@
+/* Homepage wrapper */
+#homePage {
+    display: grid;
+    gap: 0px;
+    border: 3px solid black;
+}
+#homePage > div {
+    outline: 1px solid black;
+}
+/* Hero section */
+#hero {
+    display: flex;
+    /* Align items in the middle */
+    align-items: center;
+    justify-content: center;
+    height: 10em;
+    font-size: 60px;
+}
