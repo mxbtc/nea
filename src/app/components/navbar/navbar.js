@@ -28,21 +28,23 @@ function SessionButtons () {
 // Navbar to be returned
 export default function NavBar () {
     return (
-        <header id={styles.navbar}>
-            {/* Logo Placeholder */}
-            <div className={styles.logo}>
-                <Image src="./logoBlackOnWhite.svg" width={40} height={40} alt="Logo"/>
-            </div>
-            {/* Links */}
-            <div className={styles.linksParent}>
-                <ul className={styles.linksContainer}>
-                    <li className={styles.link}>
-                        <button onClick={() => redirect("/")}>Home</button>
-                    </li>
-                    {/* Buttons based on user session state */}
-                    <SessionButtons/>
-                </ul>
-            </div>
-        </header>
+        <SessionProvider>
+            <header id={styles.navbar}>
+                {/* Logo Placeholder */}
+                <div className={styles.logo}>
+                    <Image src="./logoBlackOnWhite.svg" width={40} height={40} alt="Logo"/>
+                </div>
+                {/* Links */}
+                <div className={styles.linksParent}>
+                    <ul className={styles.linksContainer}>
+                        <li className={styles.link}>
+                            <button onClick={() => redirect("/")}>Home</button>
+                        </li>
+                        {/* Buttons based on user session state */}
+                        <SessionButtons/>
+                    </ul>
+                </div>
+            </header>
+        </SessionProvider>
     )
 }
