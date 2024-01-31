@@ -1,7 +1,10 @@
-/* Import font from google */
-@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&display=swap');
-/* Global CSS */
+:root{
+  --font-color: #ededed;
+   --bg-color: #000000;
+}
+
 body {
-  font-family: 'Inclusive Sans';
+  color: var(--font-color);
+  background-color: var(--bg-color);
   margin: 0;
 }

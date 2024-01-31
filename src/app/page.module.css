@@ -1,18 +1,75 @@
 /* Homepage wrapper */
-#homePage {
-    display: grid;
-    gap: 0px;
-    border: 3px solid black;
+#backgroundImage {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/rollsroycephantom.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10;
 }
-#homePage > div {
-    outline: 1px solid black;
+
+#homePage {
+    width: 100vw;
+    min-height: 100vh;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.9) 100%);
+}
+#navbar {
+    width: calc(100vw - 20px);
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#navbar > header {
+    background-color: #00000000;
 }
 /* Hero section */
 #hero {
     display: flex;
-    /* Align items in the middle */
-    align-items: center;
     justify-content: center;
-    height: 10em;
+    flex-direction: column;
+    padding-left: 150px;
+    height: 5em;
     font-size: 60px;
+}
+
+.reveal {
+    font-size: 60px;
+    font-weight: 550;
+    width: max-content;
+    color: #46454500;
+    --g: linear-gradient(rgb(255, 255, 255) 0 0) no-repeat;
+    background: var(--g),var(--g);
+    background-size: 0% 100%;
+    -webkit-background-clip: padding-box,text;
+            background-clip: padding-box,text;
+    animation: 
+      t 1s 0.5s both,
+      b 1s 1.3s both;
+}
+
+.reveal2 {
+    font-size: 60px;
+    font-weight: 600;
+    width: max-content;
+    color: rgba(130, 130, 130, 0);
+    --g: linear-gradient(rgb(130, 130, 130) 0 0) no-repeat;
+    background: var(--g),var(--g);
+    background-size: 0% 100%;
+    -webkit-background-clip: padding-box,text;
+            background-clip: padding-box,text;
+    animation:
+    t 1.4s 1.4s both,
+    b 1.4s 2.5s both;
+}
+  
+@keyframes t{
+    to {background-size: 150% 100%} 
+}
+
+@keyframes b {
+    to {background-position:-200% 0,0 0}
 }
