@@ -4,17 +4,38 @@
     height: 100vh;
     width: 100vw;
     background-image: url("/rollsroycephantom.jpg"); 
-    background-position: center;
+    background-position: top right;
     background-repeat: no-repeat;
     background-size: cover;
     z-index: -10;
 }
 
+#backgroundImage2 {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000000ff;
+    z-index: -1;
+    animation: animateBg 5100ms ease-in-out;
+    opacity: 0;
+}
+
+@keyframes animateBg {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+} 
+
 #homePage {
     width: 100vw;
     min-height: 100vh;
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.9) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.5) 100%);
 }
 #navbar {
     width: calc(100vw - 20px);
@@ -24,7 +45,7 @@
     justify-content: center;
 }
 #navbar > header {
-    background-color: #00000000;
+    background: linear-gradient(45deg, rgba(0,0,0,0.3) 100%,rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.3) 0%);
 }
 /* Hero section */
 #hero {
@@ -32,13 +53,14 @@
     justify-content: center;
     flex-direction: column;
     padding-left: 150px;
-    height: 5em;
-    font-size: 60px;
+    min-height: 5em;
+    width: calc(100% - 150px);
+    font-size: 3.5rem;
 }
 
 .reveal {
-    font-size: 60px;
     font-weight: 550;
+    stroke: 1px solid #121212;
     width: max-content;
     color: #46454500;
     --g: linear-gradient(rgb(255, 255, 255) 0 0) no-repeat;
@@ -52,12 +74,13 @@
 }
 
 .reveal2 {
-    font-size: 60px;
+    text-shadow: 0 0 30px 20px #eaeaea;
     font-weight: 600;
     width: max-content;
     color: rgba(130, 130, 130, 0);
-    --g: linear-gradient(rgb(130, 130, 130) 0 0) no-repeat;
-    background: var(--g),var(--g);
+    --g: linear-gradient(147deg, #ffffff 0%, rgb(53, 53, 53) 90%) no-repeat;
+    --g-2: linear-gradient(rgb(255, 255, 255) 0 0) no-repeat;
+    background: var(--g-2),var(--g);
     background-size: 0% 100%;
     -webkit-background-clip: padding-box,text;
             background-clip: padding-box,text;

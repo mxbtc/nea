@@ -6,27 +6,28 @@ import styles from './navbar.module.css'
 import Image from 'next/image';
 // We will use these functions from the library to make the buttons and redirect to the right page.
 import { useSession, signIn, signOut, SessionProvider } from "next-auth/react"
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 // This function will return different components depending on whether the user is logged in or not
-function SessionButtons () {
+function SessionButtons ({router}) {
     // Get the session (if there is one) and store it
-    let { data: session } = useSession();
+    let { data: session } = useSession()
     // If the user is logged out, the user will see the log in and sign up button
     // If the user is signed in, the user will see the log out and dashboard button
     return !session ?
         [
             <li key={"link"} className={styles.link}><button onClick={signIn}>Sign In</button></li>,
-            <li key={"link"} className={styles.link}><button onClick={() => redirect("/sign-up")}>Sign Up</button></li>
+            <li key={"link"} className={styles.link}><button onClick={() => router.push("/sign-up")}>Sign Up</button></li>
         ]
         : 
         [
             <li key={"link"} className={styles.link}><button onClick={signOut}>Sign Out</button></li>,
-            <li key={"link"} className={styles.link}><button onClick={() => redirect("/dashboard")}>Dashboard</button></li>
+            <li key={"link"} className={styles.link}><button onClick={() => router.push("/dashboard")}>Dashboard</button></li>
         ]
 }
 // Navbar to be returned
 export default function NavBar () {
+    const router = useRouter()
     return (
         <SessionProvider>
             <header id={styles.navbar}>
@@ -38,10 +39,10 @@ export default function NavBar () {
                 <div className={styles.linksParent}>
                     <ul className={styles.linksContainer}>
                         <li className={styles.link}>
-                            <button onClick={() => redirect("/")}>Home</button>
+                            <button onClick={() => router.push("/")}>Home</button>
                         </li>
                         {/* Buttons based on user session state */}
-                        <SessionButtons/>
+                        <SessionButtons router={router}/>
                     </ul>
                 </div>
             </header>

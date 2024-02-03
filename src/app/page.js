@@ -1,5 +1,5 @@
 import styles from './page.module.css'
-import NavBar from './components/navbar/navbar'
+import NavBar from '../components/navbar/navbar'
  
 // Create page's title
 export const metadata = {
@@ -10,6 +10,7 @@ export default function Home() {
 	return <>
 		{/* Background image, separate for blur effect */}
 		<div id={styles.backgroundImage}></div>
+		<div id={styles.backgroundImage2}></div>
 		{/* Wrapper for the overall page. If we need more sections, we can add them later within the wrapper and use display:grid to sort the layout  */}
 		<div id={styles.homePage}>
 			{/* Importing the navbar component from ./app/hooks - don't need to rewrite code on each page */}

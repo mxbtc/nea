@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "../../../../../lib/mongodb"
-import dbConnect from "../../../../../lib/dbConnect"
+import dbConnect from "../../../../../lib/database"
 import { Model, Models, model } from "mongoose"
 import User from "../../../../../models/User.js"
 

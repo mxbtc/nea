@@ -5,7 +5,7 @@ import { BoxArrowLeft} from 'react-bootstrap-icons'
 import crypto from 'crypto'
 import { redirect } from 'next/navigation'
 import SignUpForm from './signupform'
-import dbConnect from '../../../../lib/dbConnect'
+import dbConnect from '../../../../lib/database'
 import Users from '../../../../models/User'
 
 export default function Home({searchParams}) {
