@@ -100,7 +100,7 @@ function Form () {
                     <div class={styles.validation}>
                         {/* If username meets rules, tick is returned ; message also displayed */}
                         <span><Valid rule={/^[a-zA-Z0-9]+$/.test(username)}/>Username is alphanumerical (letters A-Z and numbers only)</span>
-                        <span><Valid rule={username.length <= 35 && username.length >= 3}/>Username is between 3-35 character inclusive</span>
+                        <span><Valid rule={username.length <= 35 && username.length >= 3}/>Username is 3-35 characters long</span>
                     </div>
                 </div>
             </div>
