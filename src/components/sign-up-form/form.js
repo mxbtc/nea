@@ -83,9 +83,9 @@ function Form () {
                     <div class={styles.validation}>
                         {/* If email meets rules, tick is returned ; message also displayed */}
                         <span><Valid rule={emailValid.valid && emailValid.exists}/>{emailValid === "Loading" ? "Checking email..." : 
-                        !emailValid.exists ? "Email already in use" 
-                        : emailValid.valid ? "Email is valid"
-                        : "Email in incorrect format"}</span>
+                        !emailValid.exists ? "Email is already in use" 
+                        : emailValid.valid ? "Valid email address"
+                        : "Email is in incorrect format"}</span>
                     </div>
                 </div>
                 <div class={styles.inputContainer}>
@@ -100,7 +100,7 @@ function Form () {
                     <div class={styles.validation}>
                         {/* If username meets rules, tick is returned ; message also displayed */}
                         <span><Valid rule={/^[a-zA-Z0-9]+$/.test(username)}/>Username is alphanumerical (letters A-Z and numbers only)</span>
-                        <span><Valid rule={username.length <= 35 && username.length >= 3}/>Username is 3-35 characters long</span>
+                        <span><Valid rule={username.length <= 35 && username.length >= 3}/>Username must be 3-35 characters long</span>
                     </div>
                 </div>
             </div>
