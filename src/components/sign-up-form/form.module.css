@@ -1,6 +1,6 @@
 #signUpForm {
-    background-color: rgb(231, 231, 231);
-    color: rgb(16, 16, 16);
+    background-color: rgba(10, 10, 10, 0.972);
+    color: var(--font-color);
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -8,6 +8,7 @@
     height: auto;
     width: auto;
     min-width: 300px;
+    box-shadow: 0 0 50px 5px #d2d2d2;
 }
 
 #header {
@@ -21,7 +22,7 @@
 }
 
 .inputContainer {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     flex-direction: column;
 }
@@ -39,20 +40,44 @@
 
 .inputContainer > input:focus {
     outline: none;
-    border-bottom: 2px solid #050505;
+    border-bottom: 2px solid #e8e8e8;
 }
 
 .inputLabel {
-    color: #222222;
-    font-size: 12px;
+    color: #bbbbbb;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputLabel > span {
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    gap: 5px;
+    color:rgb(140, 140, 140);
+}
+
+.inputLabel > span > svg {
+    height: 15px;
+    width: 15px;
 }
 
 .validation {
-    font-size: 11px;
+    font-size: 10px;
+    color:#a4a4a4 ; 
 }
 
 .validation > span {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.inputContainer > button {
+    padding: 8px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
 }

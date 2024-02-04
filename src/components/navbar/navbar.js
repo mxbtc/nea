@@ -16,13 +16,13 @@ function SessionButtons ({router}) {
     // If the user is signed in, the user will see the log out and dashboard button
     return !session ?
         [
-            <li key={"link"} className={styles.link}><button onClick={signIn}>Sign In</button></li>,
-            <li key={"link"} className={styles.link}><button onClick={() => router.push("/sign-up")}>Sign Up</button></li>
+            <li key={"link1"} className={styles.link}><button onClick={signIn}>Sign In</button></li>,
+            <li key={"link2"} className={styles.link}><button onClick={() => router.push("/sign-up")}>Sign Up</button></li>
         ]
         : 
         [
-            <li key={"link"} className={styles.link}><button onClick={signOut}>Sign Out</button></li>,
-            <li key={"link"} className={styles.link}><button onClick={() => router.push("/dashboard")}>Dashboard</button></li>
+            <li key={"link3"} className={styles.link}><button onClick={signOut}>Sign Out</button></li>,
+            <li key={"link4"} className={styles.link}><button onClick={() => router.push("/dashboard")}>Dashboard</button></li>
         ]
 }
 // Navbar to be returned

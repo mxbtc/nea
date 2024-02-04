@@ -1,6 +1,6 @@
 import './globals.css'
 import { GeistSans } from 'geist/font/sans';
-import NavBar from '../components/navbar/navbar';
+import ToastWrapper from '../components/toast/toast.js'
 
 
 export default function RootLayout({ children }) {
@@ -8,6 +8,7 @@ export default function RootLayout({ children }) {
 		<html lang="en" className={GeistSans.className}>
 			<body>
 				{children}
+				<ToastWrapper/>
 			</body>
 		</html>
 	)
