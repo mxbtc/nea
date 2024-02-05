@@ -1,31 +1,44 @@
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import { connection } from "../../../../../lib/database"
+import User from "../../../../../models/User"
+import { hashData } from '../../../../../lib/utils'
 
 const authOptions = {
+	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
 		CredentialsProvider({
-			// Name of the form
-		  	name: "Credentials",
-		  	// Use these values to create a form
-		 	credentials: {
-				username: { label: "Username", type: "text" },
-				password: {  label: "Password", type: "password" }
-		  	},
 		  	// function to authorise user when signing in
 		  	async authorize(credentials, req) {
-				// Placeholder data for prototype
-				const user = { id: "1", name: "example", email: "example@example.com" }
-				if (user) {
+				await connection()
+				// CHeck if user exists
+				let findUser = await User.findOne({
+					email: credentials.email.toLowerCase(),
+					username: credentials.username,
+					password: hashData(credentials.password)
+				})
+				
+				if (findUser) {
+					let id = findUser._id.toString();
+					let email = findUser.email
+					let username = findUser.username
+					// Had to use name as anything else doesn't work
+					let user = {
+						name: `${id} ${email} ${username}`
+					}
 					// Save session if there is a user
 			  		return user
 				} else {
 			  		// Returns error since user doesn't exist
-			  		return null
+			  		return '/sign-in?error'
 				}
-		  	}
+		  	},
 		})
 	],
+	pages: {
+		signIn: '/sign-in',
+		error: '/sign-in'
+	}
 }
 // Exporting the user handler
 const handler = NextAuth(authOptions)

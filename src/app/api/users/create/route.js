@@ -33,6 +33,7 @@ export async function POST(request) {
     // Making email lowercase to store in database
     email = email.toLowerCase();
     // CHecking is user email exists already
+    await connection()
     let user = await Users.findOne({
         email: email
     })

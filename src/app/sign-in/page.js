@@ -1,48 +1,48 @@
 'use client'
 import styles from './page.module.css'
 import NavBar from '../../components/navbar/navbar'
-import SignUpForm from '../../components/sign-up-form/form'
-import { useSession, SessionProvider } from 'next-auth/react'
+import SignInForm from '../../components/sign-in-form/form'
+import { useSession, SessionProvider, signIn } from 'next-auth/react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 
-// Sign Up Page
+// Sign In Page
 function Main() {
-	const [loading, setLoading] = useState(false)
 	let router = useRouter()
 
-	const {data: session} = useSession()
+	const { data } = useSession()
+    let session = data
 	// IF the user is already logged in, they will be redirected to the dashboard
 	if (session) {
 		router.push("/dashboard")
 	}
 	// Function to submit users
 	async function submitForm(data) {
-		setLoading(true)
-		toast.info("Attempting to create user...", {position: "bottom-right"})
 		// Send data to backend
-		let res = await fetch('api/users/create', {
+		let res = await fetch('api/users/login', {
 			method: 'POST',
 			body: data
 		})
 		let msg = await res.text()
 		if (res.status === 400) {
 			toast.error(msg, {position: "bottom-right"})
-			setLoading(false)
 		}
 		if (res.status === 200) {
-			toast.success("Successfully created user! Redirecting to sign in...", {position: "bottom-right"})
+			toast.success("Signing in...", {position: "bottom-right"})
+            signIn("credentials", {
+                redirect: false,
+                email: data.get("email"),
+                username: data.get("username"),
+                password: data.get("password")
+            })
 			setTimeout(() => {
-				router.push('/sign-in')
+				router.push('/dashboard')
 			}, 2000)
 			
 		}
 	}
-
-	// Function for sending data to API
 	return <>
-	<title>DFS Messaging - Sign Up</title>
+	<title>DFS Messaging - Sign In</title>
 	{/* Background image, separate for effects */}
 	<div id={styles.backgroundImage}></div>
 	<div id={styles.backgroundImage2}></div>
@@ -52,10 +52,8 @@ function Main() {
 	</div>
 	{/* Wrapper for main page */}
 	<div id={styles.page}>
-		{/* Sign up form  */}
-		{/* When submitted, form data sent to "(url)/api/users/create" using POST method, since we are making a user */}
 		<form id={styles.form} action={submitForm}>
-			<SignUpForm loading={loading}/>
+            <SignInForm/>
 		</form>
 	</div>
 	</>

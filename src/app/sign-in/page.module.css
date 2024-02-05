@@ -1,0 +1,46 @@
+#navbar {
+    position: absolute;
+    width: calc(100vw - 20px);
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#page {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.9) 100%);}
+
+#backgroundImage {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/luxuryinterior.jpg"); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -10;
+}
+
+#backgroundImage2 {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000000ff;
+    z-index: -1;
+    animation: animateBg 1500ms ease-in-out;
+    opacity: 0;
+}
+
+@keyframes animateBg {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+} 

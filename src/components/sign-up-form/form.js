@@ -64,8 +64,8 @@ function Form ({loading}) {
             <span id={styles.header}>Sign Up</span>
             <div id={styles.signUpInputs}>
                 {/* input for email */}
-                <div class={styles.inputContainer}>
-                    <label class={styles.inputLabel} >
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel} >
                         Email
                     </label>
                     <input 
@@ -77,7 +77,7 @@ function Form ({loading}) {
                         style={{"color": emailValid.valid && !emailValid.exists ? "inherit" : "#B73F3F"}}
                     >
                     </input>
-                    <div class={styles.validation}>
+                    <div className={styles.validation}>
                         <span>
                             {/* Visual check */}
                             <Valid rule={emailValid === "Loading" ? "Loading" : emailValid.valid && !emailValid.exists}/>
@@ -90,8 +90,8 @@ function Form ({loading}) {
                     </div>
                 </div>
                 {/* input for username */}
-                <div class={styles.inputContainer}>
-                    <label class={styles.inputLabel} >
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel} >
                         Username
                     </label>
                     <input 
@@ -101,7 +101,7 @@ function Form ({loading}) {
                         placeholder={"JohnSmith"}
                         style={{"color": usernameValid ? "inherit" : "#D13F3F"}}>
                     </input>
-                    <div class={styles.validation}>
+                    <div className={styles.validation}>
                         {/* If username meets rules, tick is returned ; message also displayed */}
                         <span>
                             <Valid rule={usernameValid === "Loading" ? "Loading" : /^[a-zA-Z0-9]+$/.test(username)}/>
@@ -115,8 +115,8 @@ function Form ({loading}) {
                     {/* Input container for password */}
                     
                 </div>
-                <div class={styles.inputContainer}>
-                    <label class={styles.inputLabel} >
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel} >
                         Password
                          {/* Button to show password */}
                         <span>
@@ -131,11 +131,12 @@ function Form ({loading}) {
                         placeholder={"Type a password..."}
                         style={{"color": passwordValid ? "inherit" : "#D13F3F"}}>
                     </input>
-                    <div class={styles.validation}>
+                    <div className={styles.validation}>
                         {/* If password meets rules, tick is returned ; message also displayed */}
                         <span>
-                            <Valid rule={passwordValid === "Loading" ? "Loading" : password.length >= 8 && password.length <= 128}/>
-                            Password must be 8-40 characters long
+                            <Valid rule={passwordValid === "Loading" ? "Loading" : 
+                            password.length >= 8 && password.length <= 128 && /^[a-zA-Z0-9]+$/.test(password)}/>
+                            Password must be 8-40 characters long and alphanumeric
                         </span>
                         <span>
                             <Valid rule={passwordValid === "Loading" ? "Loading" : password.toLowerCase() !== password  }/>
@@ -148,8 +149,8 @@ function Form ({loading}) {
                     </div>
                 </div>
                 {/* Input to confirm password */}
-                <div class={styles.inputContainer}>
-                    <label class={styles.inputLabel} >
+                <div className={styles.inputContainer}>
+                    <label className={styles.inputLabel} >
                         Confirm Password
                     </label>
                     <input 
@@ -159,7 +160,7 @@ function Form ({loading}) {
                         placeholder={"Retype your password..."}
                         style={{"color": password === confirmPassword ? "inherit" : "#D13F3F"}}>
                     </input>
-                    <div class={styles.validation}>
+                    <div className={styles.validation}>
                         {/* Check to see if passwords match */}
                         <span>
                             <Valid rule={password.length === 0 ? confirmPassword.length !== 0 ? false : "Loading" : password === confirmPassword}/>
