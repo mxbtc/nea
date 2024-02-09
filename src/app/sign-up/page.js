@@ -44,13 +44,9 @@ function Main() {
 	return <>
 	<title>DFS Messaging - Sign Up</title>
 	{/* Background image, separate for effects */}
+	{/* Wrapper for main page */}
 	<div id={styles.backgroundImage}></div>
 	<div id={styles.backgroundImage2}></div>
-	{/* Navbar which includes all links */}
-	<div id={styles.navbar}>
-		<NavBar/>
-	</div>
-	{/* Wrapper for main page */}
 	<div id={styles.page}>
 		{/* Sign up form  */}
 		{/* When submitted, form data sent to "(url)/api/users/create" using POST method, since we are making a user */}

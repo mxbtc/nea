@@ -35,7 +35,7 @@ function Form () {
                         type="string" required name="username"
                         // Track value of input box by using setUsername hook
                         onChange={e => setUsername(e.target.value)} value={username} 
-                        placeholder={"John Smith"}
+                        placeholder={"JohnSmith"}
                     >
                     </input>
                 </div>

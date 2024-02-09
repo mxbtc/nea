@@ -105,7 +105,7 @@ function Form ({loading}) {
                         {/* If username meets rules, tick is returned ; message also displayed */}
                         <span>
                             <Valid rule={usernameValid === "Loading" ? "Loading" : /^[a-zA-Z0-9]+$/.test(username)}/>
-                            Username only has letters A-Z and numbers 0-9 (case sensitive)
+                            Username must have only letters A-Z and numbers 0-9 (case sensitive)
                         </span>
                         <span>
                             <Valid rule={usernameValid === "Loading" ? "Loading" : username.length <= 35 && username.length >= 3}/>

@@ -24,7 +24,7 @@ const authOptions = {
 					let username = findUser.username
 					// Had to use name as anything else doesn't work
 					let user = {
-						name: `${id} ${email} ${username}`
+						name: `${username}`, id: findUser._id.toString(), email: email
 					}
 					// Save session if there is a user
 			  		return user
@@ -35,10 +35,29 @@ const authOptions = {
 		  	},
 		})
 	],
+	callbacks: {
+		async jwt({token, account}) {
+			// We can return the user id when using a session
+			if (account) {
+			  	token.accessToken = account.access_token
+				token.id = account.providerAccountId ? account.providerAccountId : null
+			}
+			return token
+		},
+		async session({session,token, user}) {
+			// Send access token and user ID to client side
+			session.accessToken = token.accessToken
+			if (token) {
+				session.user.id = token.id ? token.id : null
+			}
+			return session
+		  }
+	},
 	pages: {
 		signIn: '/sign-in',
 		error: '/sign-in'
-	}
+	},
+	secret: process.env.NEXTAUTH_SECRET
 }
 // Exporting the user handler
 const handler = NextAuth(authOptions)

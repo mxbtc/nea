@@ -16,7 +16,7 @@ function SessionButtons ({router}) {
     // If the user is signed in, the user will see the log out and dashboard button
     return !session ?
         [
-            <li key={"link1"} className={styles.link}><button onClick={signIn}>Sign In</button></li>,
+            <li key={"link1"} className={styles.link}><button onClick={() => router.push("/sign-in")}>Sign In</button></li>,
             <li key={"link2"} className={styles.link}><button onClick={() => router.push("/sign-up")}>Sign Up</button></li>
         ]
         : 
@@ -30,10 +30,10 @@ export default function NavBar () {
     const router = useRouter()
     return (
         <SessionProvider>
-            <header id={styles.navbar}>
+            <div id={styles.navbar}>
                 {/* Logo Placeholder */}
                 <div className={styles.logo}>
-                    <Image src="./logoBlackOnWhite.svg" width={40} height={40} alt="Logo"/>
+                    <Image src="/logoBlackOnWhite.svg" width={40} height={40} alt="Logo"/>
                 </div>
                 {/* Links */}
                 <div className={styles.linksParent}>
@@ -45,7 +45,7 @@ export default function NavBar () {
                         <SessionButtons router={router}/>
                     </ul>
                 </div>
-            </header>
+            </div>
         </SessionProvider>
     )
 }

@@ -1,8 +1,8 @@
 /* Homepage wrapper */
 #backgroundImage {
     position: absolute;
-    height: 100vh;
-    width: 100vw;
+    height: 99.9vh;
+    width: 100%;
     background-image: url("/rollsroycephantom.jpg"); 
     background-position: top right;
     background-repeat: no-repeat;
@@ -12,43 +12,34 @@
 
 #backgroundImage2 {
     position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background-color: #000000ff;
+    height: 99.9vh;
+    width: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.5) 100%);
     z-index: -1;
     animation: animateBg 5100ms ease-in-out;
-    opacity: 0;
+    opacity: 1;
 }
 
 @keyframes animateBg {
     0% {
+        background-color: #000000ff;
         opacity: 1;
     }
     50% {
+        background-color: #000000ff;
         opacity: 1;
     }
     100% {
-        opacity: 0;
+        background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.5) 100%);
     }
 } 
 
 #homePage {
-    width: 100vw;
-    min-height: 100vh;
-    background: linear-gradient(90deg, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.5) 100%);
-}
-#navbar {
-    width: calc(100vw - 20px);
-    padding: 0px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#navbar > header {
-    background: linear-gradient(45deg, rgba(0,0,0,0.3) 100%,rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.3) 0%);
+    width: 100%;
 }
 /* Hero section */
 #hero {
+    padding-top: 60px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -56,6 +47,7 @@
     min-height: 5em;
     width: calc(100% - 150px);
     font-size: 3.5rem;
+    
 }
 
 .reveal {
