@@ -11,6 +11,9 @@ export default function Home() {
 		{/* Background image, separate for blur effect */}
 		<div id={styles.backgroundImage}></div>
 		<div id={styles.backgroundImage2}></div>
+		<div id={styles.navbar}>
+			<NavBar/>
+		</div>
 		{/* Wrapper for the overall page. If we need more sections, we can add them later within the wrapper and use display:grid to sort the layout  */}
 		<div id={styles.homePage}>
 			{/* Hero Page - Take up space */}

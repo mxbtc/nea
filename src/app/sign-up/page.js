@@ -47,6 +47,9 @@ function Main() {
 	{/* Wrapper for main page */}
 	<div id={styles.backgroundImage}></div>
 	<div id={styles.backgroundImage2}></div>
+	<div id={styles.navbar}>
+		<NavBar/>
+	</div>
 	<div id={styles.page}>
 		{/* Sign up form  */}
 		{/* When submitted, form data sent to "(url)/api/users/create" using POST method, since we are making a user */}

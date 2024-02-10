@@ -45,6 +45,9 @@ function Main() {
 	<title>DFS Messaging - Sign In</title>
 	<div id={styles.backgroundImage}></div>
 	<div id={styles.backgroundImage2}></div>
+	<div id={styles.navbar}>
+		<NavBar/>
+	</div>
 	{/* Wrapper for main page */}
 	<div id={styles.page}>
 		<form id={styles.form} action={submitForm}>

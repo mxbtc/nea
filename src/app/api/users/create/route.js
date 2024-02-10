@@ -58,11 +58,12 @@ export async function POST(request) {
     }
     // Hashing password
     let hashedPassword = hashData(password)
-    await Users.create({
+    let newUser = await Users.create({
         email: email,
         username: username,
         password: hashedPassword
     })
+    await newUser.save()
     return new Response(
         'User created!'
     , {

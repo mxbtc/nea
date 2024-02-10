@@ -27,6 +27,7 @@ function SessionButtons ({router}) {
 }
 // Navbar to be returned
 export default function NavBar () {
+    "use client"
     const router = useRouter()
     return (
         <SessionProvider>

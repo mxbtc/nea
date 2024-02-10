@@ -19,7 +19,7 @@ const authOptions = {
 				})
 				
 				if (findUser) {
-					let id = findUser._id.toString();
+					//let id = findUser._id.toString();
 					let email = findUser.email
 					let username = findUser.username
 					// Had to use name as anything else doesn't work
@@ -49,6 +49,7 @@ const authOptions = {
 			session.accessToken = token.accessToken
 			if (token) {
 				session.user.id = token.id ? token.id : null
+				session.jti = token.jti
 			}
 			return session
 		  }
