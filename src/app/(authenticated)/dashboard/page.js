@@ -1,11 +1,15 @@
 import styles from './page.module.css'
 import NavBar from '@/components/navbar/navbar'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export const metadata = {
     title: 'DFS Messaging - Admin Dashboard',
 }
 
-export default function Page() {
+export default async function Page() {
+    const session = await getServerSession()
+    console.log(session)
     return (
         <div>
             <div id={styles.navbar}>
