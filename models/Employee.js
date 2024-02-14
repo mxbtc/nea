@@ -4,7 +4,8 @@ const EmployeeSchema = new mongoose.Schema(
 	{
 		userId: {
 			type: mongoose.Schema.Types.ObjectId,
-			required: true
+			required: true,
+			unique: true
 		},
 		permissionLevel: {
 			type: mongoose.Schema.Types.Number,

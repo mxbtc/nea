@@ -1,0 +1,151 @@
+#section {
+    height: calc(100% - 100px);
+    max-height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#tableContainer {
+    height: 100%;
+    max-height: 100%;
+    width: calc(75% - 40px);
+    padding: 0px 20px 0px 20px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    overflow-y: scroll;
+}
+
+#tableContainer::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(0, 128, 0, 0)
+}
+
+#tableContainer::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+
+#tableContainer::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #888;
+}
+
+#tableContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+#headBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #1a1a1a;
+    width: calc(75% - 40px);
+    border-radius: 20px;
+    
+}
+
+#headBar > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#addEmployee {
+    padding: 10px 15px;
+    font-family: inherit;
+    background-color: #6a6a6a;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+}
+
+#employees {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+.tableRow > td {
+    border-top: 1px solid rgba(128, 128, 128, 0.177);
+    padding: 20px 10px;
+    color: rgb(172, 172, 172);
+}
+
+.tableRow > td, .tableHead > th {
+    border-left: 1px solid rgba(128, 128, 128, 0);
+    text-align: left;
+    padding-left: 20px;
+}
+
+.tableRow > td:first-child, .tableHead > th:first-child {
+    border-left: none;
+}
+
+.tableRow > td:last-child, .tableHead > th:last-child {
+    border-right: none;
+}
+
+.tableHead > th:nth-child(4), .tableHead > th:nth-child(5), .tableRow > td:nth-child(4), .tableRow > td:nth-child(5) {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.tableHead > th {
+    padding-bottom: 20px;
+    padding-top: 30px;
+    border-bottom: 3px solid rgb(79, 79, 79);
+    border-left: none;
+    color: rgb(229, 229, 229);
+    background-color: #1a1a1a;
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.tableHead {
+    background-color: #1a1a1a;
+}
+
+.tableHead > th:nth-child(1), .tableRow > td:nth-child(1) {
+    width: 20%;
+}
+
+.tableHead > th:nth-child(2), .tableRow > td:nth-child(2) {
+    width: 40%;
+}
+
+.tableHead > th:nth-child(3), .tableRow > td:nth-child(3) {
+    width: 20%;
+}
+
+.tableHead > th:nth-child(4), .tableHead > th:nth-child(5), .tableRow > td:nth-child(4), .tableRow > td:nth-child(5) {
+    width: 5%;
+}
+
+.editButton {
+    padding: 10px;
+    background-color: #6a6a6a;
+    border-radius: 5px;
+}
+
+.deleteButton {
+    padding: 10px;
+    background-color: #e94f4f;
+    border-radius: 5px;
+}
+
+#employeeFilter {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+}

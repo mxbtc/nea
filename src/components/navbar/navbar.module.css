@@ -3,7 +3,7 @@
     --nav-padding: 60px;
     padding: 10px var(--nav-padding);
     padding-bottom: 15px;
-    width: calc(70% - calc(2 * var(--nav-padding)));
+    width: calc(75% - calc(2 * var(--nav-padding)));
     display: flex;
     align-items: center;
     flex-direction: row;

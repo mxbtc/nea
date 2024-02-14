@@ -9,7 +9,6 @@ export const metadata = {
 
 export default async function Page() {
     const session = await getServerSession()
-    console.log(session)
     return (
         <div>
             <div id={styles.navbar}>
