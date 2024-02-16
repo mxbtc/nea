@@ -43,7 +43,7 @@ export default async function Page({ params, searchParams }) {
             _id: new mongoose.Types.ObjectId(id)
         },
         {
-            permissionLevel: parseInt(permission)
+            permissionLevel: parseInt(permissionLevel)
         },
         {upsert: false}) // new record wont be added if the employee isn't found
 
