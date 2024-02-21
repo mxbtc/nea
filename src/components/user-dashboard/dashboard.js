@@ -14,16 +14,12 @@ export default function Dashboard ({ userId }) {
     const [createChannelActive, setCreateChannelActive] = useState(false)
     const [joinChannelActive, setJoinChannelActive] = useState(false)
     const [isClient, setIsClient] = useState(false) // is client loaded?
+    const [channelsInit, setChannelsInit] = useState([])
     const [channels, setChannels] = useState([]) // array of user's channels, including filtered 
 
-
-    useEffect(() => {
-        setIsClient(true)
-    }, [])
-
     useEffect(() => {
 
-        async function getChannels(filter) {
+        async function getChannelsInit(filter) {
             try {
                 let url = '/api/channels/get' // api route
         
@@ -31,7 +27,24 @@ export default function Dashboard ({ userId }) {
         
                 let newChannels = res.data
         
-                let filtered = newChannels.filter(channel => {
+                setChannelsInit(newChannels)
+            } catch (e) {
+                setChannels([])
+            }
+            
+        }
+
+        getChannelsInit()
+
+    }, [viewChannelActive])
+
+    useEffect(() => {
+
+        async function getChannels(filter) {
+            try {
+                let channels = channelsInit
+        
+                let filtered = channels.filter(channel => {
                     let name = channel.name
                     // check names to see if they include the filter, if they do return the item else discard it
                     if (name.toLowerCase().includes(filter.toLowerCase())) {
@@ -50,7 +63,11 @@ export default function Dashboard ({ userId }) {
 
         getChannels(filter)
 
-    }, [filter, viewChannelActive]) // occur on first render, when filter changes and when view is toggled
+    }, [filter, viewChannelActive, channelsInit]) // occur on first render, when filter changes and when view is toggled
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     function toggleSectionView (sectionName) {
         setViewChannelActive(sectionName === "view") // see all channels

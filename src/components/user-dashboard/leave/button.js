@@ -1,7 +1,5 @@
 "use client"
-import { useSession } from 'next-auth/react'
 import styles from './button.module.css'
-import Link from 'next/link'
 import { BoxArrowRight } from 'react-bootstrap-icons'
 import buttonAction from './buttonAction'
 import { toast } from 'react-toastify'
