@@ -1,0 +1,68 @@
+#channels {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+.tableRow > td {
+    border-top: 1px solid rgba(128, 128, 128, 0.177);
+    padding: 20px 10px;
+    color: rgb(172, 172, 172);
+}
+
+.tableRow > td, .tableHead > th {
+    border-left: 1px solid rgba(128, 128, 128, 0);
+    text-align: left;
+    padding-left: 20px;
+}
+
+.tableRow > td:first-child, .tableHead > th:first-child {
+    border-left: none;
+}
+
+.tableRow > td:last-child, .tableHead > th:last-child {
+    border-right: none;
+}
+
+.tableHead > th:nth-child(1), .tableRow > td:nth-child(1) {
+    width: 75%;
+}
+
+.tableHead > th:nth-child(2), .tableRow > td:nth-child(2) {
+    width: 15%;
+}
+
+.tableHead > th:nth-child(3), .tableRow > td:nth-child(3) {
+    width: 5%;
+    padding-left: 0px;
+    padding-right: 0;
+    text-align: center;
+}
+
+.tableHead > th:nth-child(4), .tableRow > td:nth-child(4) {
+    width: 5%;
+    padding-left: 0px;
+    padding-right: 0;
+    text-align: center;
+}
+
+.tableHead > th {
+    padding-bottom: 20px;
+    padding-top: 30px;
+    border-bottom: 3px solid rgb(79, 79, 79);
+    border-left: none;
+    color: rgb(229, 229, 229);
+    background-color: #1a1a1a;
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+
+.tableHead {
+    background-color: #1a1a1a;
+}
+
+.viewChannel {
+    padding: 10px;
+    background-color: #6a6a6a;
+    border-radius: 5px;
+}

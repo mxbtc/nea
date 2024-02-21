@@ -11,18 +11,22 @@
   "dependencies": {
     "@auth/mongodb-adapter": "^2.0.0",
     "awesome-toast-component": "^2.0.6",
+    "bootstrap": "^5.3.2",
     "bootstrap-icons": "^1.11.1",
     "geist": "^1.2.1",
     "mongodb": "^6.1.0",
     "mongoose": "^8.1.1",
+    "nanoid": "^5.0.5",
     "next": "^14.1.0",
     "next-auth": "^4.24.5",
     "rc-notification": "^5.3.0",
     "react": "18.2.0",
     "react-animate-height": "^3.2.3",
+    "react-bootstrap": "^2.10.1",
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "18.2.0",
     "react-toastify": "^10.0.4",
-    "react-tooltip": "^5.26.0"
+    "react-tooltip": "^5.26.0",
+    "short-uuid": "^4.2.2"
   }
 }

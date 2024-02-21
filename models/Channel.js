@@ -2,16 +2,16 @@ import mongoose from 'mongoose'
 // The schema ensures that the inputs match the data types and is inputted
 const ChannelSchema = new mongoose.Schema(
 	{
-		name: {
+		name: { // Name of the group
 			type: mongoose.Schema.Types.String,
 			required: true,
-			unique: true
 		},
-		inviteId: {
+		inviteId: { // unqiue ID string which users can join with
 			type: mongoose.Schema.Types.String,
-			required: true
+			required: true,
+			unqiue: true
 		},
-        ownerId: {
+        ownerId: { // Id of user who created group.
 			type: mongoose.Schema.Types.ObjectId,
 			required: true
 		}
