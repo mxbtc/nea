@@ -57,7 +57,7 @@ export default function Page() {
 									<div class={styles.messageAuthor}>
 										{message.username}
 									</div>
-									<div class={styles.message}>
+									<div class={styles.messageContent}>
 										{message.content}
 									</div>
 							</div>
