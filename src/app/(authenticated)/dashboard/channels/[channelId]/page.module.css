@@ -1,0 +1,131 @@
+#header {
+    height: 100px;
+}
+
+#navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#section {
+    height: calc(100% - 100px);
+    max-height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#container {
+    height: calc(100% - 90px);
+    max-height: calc(100% - 90px);
+    width: calc(75% - 40px);
+    padding: 0px 20px 0px 20px;
+    border-radius: 20px 20px 0px 0px;
+    background-color: #1a1a1a;
+	overflow: hidden;
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#messages {
+	margin-top: 20px;
+    height: calc(85% - 20px);
+    max-height: calc(85% - 20px);
+    width: 100%;
+    display: flex;
+	flex-direction: column;
+	overflow: scroll;
+	gap: 10px;
+}
+
+.message {
+
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 23px);
+	padding: 8px;
+	padding-left: 15px;
+	background-color: #3e3e3e;
+	border-radius: 8px;
+}
+
+.messageAuthor {
+	width: 100%;
+	font-size: 12px;
+	color: #aaaaaa
+}
+
+.messageContent {
+	width: 100%;
+}
+
+#messages::-webkit-scrollbar {
+    width: 10px;
+    background: rgba(0, 128, 0, 0)
+}
+
+#messages::-webkit-scrollbar-track {
+    background: #f1f1f100;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #888;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+#headBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: #1a1a1a;
+    width: calc(75% - 40px);
+    border-radius: 20px;
+    
+}
+
+#headBar > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+#headBar > div > svg {
+    transform: translateY(3px);
+    padding-bottom: 5px;
+    border-bottom: 2px dashed rgb(188, 188, 188);
+}
+
+#messageInputContainer {
+	height: 5%;
+	margin-top: 15px;
+	width: 100%;
+}
+
+#messageInput {
+	width: calc(90% - 20px);
+	padding: 10px 10px;
+	padding-left: 20px;
+	border-radius: 20px 0px 0px 20px;
+	border: none;
+	outline: none;
+}
+
+#messageInputContainer > button {
+	width: calc(10% - 20px);
+	border: none;
+	border-radius: 0 20px 20px 0;
+	padding: 10px 10px;
+	border-left: 1px solid rgb(39, 39, 39);
+}
