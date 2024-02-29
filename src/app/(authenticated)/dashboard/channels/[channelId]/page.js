@@ -1,7 +1,7 @@
 "use client"
 import styles from './page.module.css'
 import NavBar from '@/components/navbar/navbar'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 
 export default function Page() {
@@ -10,10 +10,11 @@ export default function Page() {
 	const [messageInputText, setMessageInputText] = useState("")
 	let id=0
 
-	function enterMessage () {
+	function enterMessage (event) {
+		event.preventDefault()
 		let content = messageInputText
 		let author = "Test User"
-		messages.push(
+		messages.unshift(
 			{
 				id: id++,
 				username: author,
@@ -22,6 +23,16 @@ export default function Page() {
 		)
 		setMessageInputText("")
 	}
+
+	const messagesEndRef = useRef(null)
+
+	function scrollToBottom () {
+		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+	}
+
+	useEffect(() => {
+		scrollToBottom()
+	}, [messages]);
 
     return (
         <>
@@ -34,7 +45,7 @@ export default function Page() {
                 <div id={styles.headBar}>
                     <div>
                         <h2>
-                            Dashboard
+                            Messages
                         </h2>
 					</div>
                 </div>
@@ -53,13 +64,13 @@ export default function Page() {
 							})
 						}
 					</div>
-					<div id={styles.messageInputContainer}>
+					<form id={styles.messageInputContainer} onSubmit={enterMessage}>
 							<input id={styles.messageInput} type={"text"} name={"message"} required
 							onChange={e => setMessageInputText(e.target.value)}
 							value={messageInputText}
 							></input>
-							<button type={"button"} onClick={enterMessage}>Enter</button>
-					</div>
+							<button type={"submit"}>Enter</button>
+					</form>
                 </div>
             </section>
         </>

@@ -24,7 +24,8 @@
     padding: 0px 20px 0px 20px;
     border-radius: 20px 20px 0px 0px;
     background-color: #1a1a1a;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
     display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -36,9 +37,10 @@
     max-height: calc(85% - 20px);
     width: 100%;
     display: flex;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	overflow: scroll;
 	gap: 10px;
+	border-bottom: 1px solid white;
 }
 
 .message {
