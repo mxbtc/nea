@@ -80,7 +80,7 @@ export default async function Page ({ params }) {
                     <div>
                         <h2>
                             Messages
-                        </h2>
+                        </h2> - {channel.name}
 					</div>
                 </div>
                 <div id={styles.container}>
