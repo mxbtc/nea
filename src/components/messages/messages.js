@@ -68,10 +68,6 @@ function PreMessages({ initialMessages, channelId }) {
 
     useEffect(() => {
 
-        for (const message of initialMessages) {
-            setRenderedInitMessages(prev => [...prev, messageCleaner(message)])
-        }
-
         pusherClient.subscribe(channelId)
 
         let messageHandler = (data) => {
@@ -84,7 +80,7 @@ function PreMessages({ initialMessages, channelId }) {
           pusherClient.unsubscribe(channelId)
           pusherClient.unbind('incoming-message', messageHandler)
         }
-    }, [])
+    }, [incomingMessages, channelId])
 
     useEffect(() => {
         setRenderedInitMessages(initialMessages.map(message => messageCleaner(message)))
