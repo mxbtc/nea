@@ -12,6 +12,11 @@
   --bg-color: #000000;
 }
 
+* {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
 html {
   height: 100%;
 }
@@ -21,4 +26,23 @@ body {
   color: var(--font-color);
   background-color: var(--bg-color);
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: rgba(0, 128, 0, 0);
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

@@ -1,38 +1,72 @@
-"use client"
+
 import styles from './page.module.css'
 import NavBar from '@/components/navbar/navbar'
-import { useEffect, useRef, useState } from 'react'
+import { getServerSession } from "next-auth/next"
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { redirect } from 'next/navigation'
+import MessagesBox from '@/components/messages/messages'
+import MessageField from '@/components/message-field/message-field'
+import { connection } from '@/../../lib/database'
+import Channels from '@/../../models/Channel'
+import Participants from '@/../../models/Participant'
+import Messages from '@/../../models/Message'
+import Users from '@/../../models/User'
 
 
-export default function Page() {
+export default async function Page ({ params }) {
 
-	const [messages, setMessages] = useState([])
-	const [messageInputText, setMessageInputText] = useState("")
-	let id=0
+	let session = await getServerSession(authOptions)
 
-	function enterMessage (event) {
-		event.preventDefault()
-		let content = messageInputText
-		let author = "Test User"
-		messages.unshift(
+	if (!session) {
+		redirect("/sign-in")
+	}
+
+	let channelId = params.channelId
+
+	await connection()
+
+	let channel = await Channels.findOne({
+		_id: channelId
+	})
+
+	if (!channel) redirect('/dashboard');
+
+	let participant = await Participants.findOne({
+		userId: session.user.id,
+		channelId: channelId
+	})
+
+	if (!participant) redirect('/dashboard');
+
+	let existingMessages = await Messages.find({
+		channelId: channelId
+	})
+
+	let serialisedMessages = existingMessages.map(async message => {
+		await connection()
+
+		let user = await Users.findOne(
 			{
-				id: id++,
-				username: author,
-				content : content
+				_id: message.userId
 			}
 		)
-		setMessageInputText("")
-	}
 
-	const messagesEndRef = useRef(null)
+		if (user) {
+			return {
+				content: message.content,
+				username: user.username,
+				email: user.email,
+				createdAt: message.createdAt,
+				_id: message._id.toString()
+			}
+		}
+	})
 
-	function scrollToBottom () {
-		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-	}
+	async function getMessages () {
+		return Promise.all(serialisedMessages)
+	} 
 
-	useEffect(() => {
-		scrollToBottom()
-	}, [messages]);
+	serialisedMessages = (await getMessages()).reverse()
 
     return (
         <>
@@ -52,25 +86,10 @@ export default function Page() {
                 <div id={styles.container}>
 					<div id={styles.messages}>
 						{
-							messages.map(message => {
-								return <div class={styles.message} key={message.id}>
-									<div class={styles.messageAuthor}>
-										{message.username}
-									</div>
-									<div class={styles.messageContent}>
-										{message.content}
-									</div>
-							</div>
-							})
+							<MessagesBox channelId={channelId} initialMessages={serialisedMessages}/>
 						}
 					</div>
-					<form id={styles.messageInputContainer} onSubmit={enterMessage}>
-							<input id={styles.messageInput} type={"text"} name={"message"} required
-							onChange={e => setMessageInputText(e.target.value)}
-							value={messageInputText}
-							></input>
-							<button type={"submit"}>Enter</button>
-					</form>
+					<MessageField userData={session.user} channelId={channelId}/>
                 </div>
             </section>
         </>

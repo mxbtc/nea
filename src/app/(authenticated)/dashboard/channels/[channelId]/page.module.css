@@ -1,134 +1,243 @@
 #header {
-    height: 100px;
+	height: 100px;
 }
 
 #navbar {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 #section {
-    height: calc(100% - 100px);
-    max-height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+	height: calc(100% - 100px);
+	max-height: calc(100% - 100px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
 #container {
-    height: calc(100% - 90px);
-    max-height: calc(100% - 90px);
-    width: calc(75% - 40px);
-    padding: 0px 20px 0px 20px;
-    border-radius: 20px 20px 0px 0px;
-    background-color: #1a1a1a;
-	overflow-x: hidden;
-	overflow-y: auto;
-    display: flex;
-	flex-direction: column;
-	align-items: center;
+	height: calc(100% - 90px);
+	max-height: calc(100% - 90px);
+	width: calc(75%);
+	border-radius: 20px 20px 0px 0px;
+	background-color: #1a1a1a;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 85% 15%;
 }
 
 #messages {
 	margin-top: 20px;
-    height: calc(85% - 20px);
-    max-height: calc(85% - 20px);
-    width: 100%;
-    display: flex;
+	padding: 0px 20px 0px 20px;
+	padding-bottom: 15px;
+	height: calc(100% - 20px);
+	max-height: calc(100% - 20px);
+	width: calc(100% - 40px);
+	display: flex;
 	flex-direction: column-reverse;
-	overflow: scroll;
-	gap: 10px;
-	border-bottom: 1px solid white;
+	align-items: center;
+	overflow: auto;
+	gap: 0px;
+	border-radius: 0px 0px 20px 20px
+}
+
+.message:first-child {
+	border-bottom: 0px solid gray;
+}
+
+.message:last-child {
+	border-top: 0px solid gray;
 }
 
 .message {
+	display: flex;
+	flex-direction: row;
+	width: calc(100% - 16px);
+	max-width: calc(100% - 16px);;
+	padding: 10px 8px;
+	border-top: 0.5px solid gray;
+	border-bottom: 0.5px solid gray;
+}
 
+.profilePictureContainer {
+	width: calc(5% - 10px);
+	padding: 10px 0px;
+	display: flex;
+	justify-content: center;
+}
+
+.profilePicture {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 40px;
+	width: 40px;
+	background-color: #5a5a5a;
+	border-radius: 50px;;
+	text-align: center;
+}
+
+.mainContent {
+	width: calc(95%);
+	max-width: 95%;
+	padding: 10px 0px;
+	padding-left: 10px;
 	display: flex;
 	flex-direction: column;
-	width: calc(100% - 23px);
-	padding: 8px;
-	padding-left: 15px;
-	background-color: #3e3e3e;
-	border-radius: 8px;
 }
 
 .messageAuthor {
-	width: 100%;
-	font-size: 12px;
-	color: #aaaaaa
+	margin-bottom: 5px;
+	margin-top: 2px;
+	width: calc(100% - 6px);
+	font-size: 11px;
+	color: #aaaaaa;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 .messageContent {
 	width: 100%;
-	font-size: 16px;
+	max-width: 100%;
+	font-size: 14px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 
-#messages::-webkit-scrollbar {
-    width: 10px;
-    background: rgba(0, 128, 0, 0)
+.messageContent > div {
+	word-wrap: break-word;
+	color: #d9d9d9;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
 }
 
-#messages::-webkit-scrollbar-track {
-    background: #f1f1f100;
+.messageContent > div * {
+	word-wrap: break-word;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
-#messages::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background: #888;
+.messageContent > div * a {
+	color: rgb(172, 214, 255)
 }
 
-#messages::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+.messageContent > div * code {
+	max-width: calc(100% - 10px);
+}
+
+.messageContent > div > pre {
+	max-width: calc(100% - 4px);
+}
+
+.messageContent > div * a:visited {
+	color: rgb(144, 113, 255);
+}
 
 #headBar{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    margin-top: 20px;
-    padding: 10px 20px;
-    align-items: center;
-    background-color: #1a1a1a;
-    width: calc(75% - 40px);
-    border-radius: 20px;
-    
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	margin-top: 20px;
+	padding: 10px 20px;
+	align-items: center;
+	background-color: #1a1a1a;
+	width: calc(75% - 40px);
+	border-radius: 20px;
+	
 }
 
 #headBar > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 20px;
 }
 
 #headBar > div > svg {
-    transform: translateY(3px);
-    padding-bottom: 5px;
-    border-bottom: 2px dashed rgb(188, 188, 188);
+	transform: translateY(3px);
+	padding-bottom: 5px;
+	border-bottom: 2px dashed rgb(188, 188, 188);
 }
 
 #messageInputContainer {
-	height: 5%;
+	padding: 0px 20px 0px 20px;
+	height: calc(100% - 15px);
 	margin-top: 15px;
-	width: 100%;
+	width: calc(100% - 40px);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #373737
 }
+
 
 #messageInput {
-	width: calc(90% - 20px);
-	padding: 10px 10px;
-	padding-left: 20px;
-	border-radius: 20px 0px 0px 20px;
-	border: none;
-	outline: none;
+	height: 90%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
 
-#messageInputContainer > button {
-	width: calc(10% - 20px);
-	border: none;
-	border-radius: 0 20px 20px 0;
+#messageInput > textarea {
+	color: var(--font-color);
+	background-color: #1a1a1a;
+	height: calc(80% - 20px);
+	font-family: inherit;
+	width: calc(100% - 80px);
 	padding: 10px 10px;
-	border-left: 1px solid rgb(39, 39, 39);
+	border-radius: 5px;
+	border: none;
+	outline: 0px solid #ffffff;
+	resize: none;
+	transition: all 100ms;
+	box-shadow: 0px 0px 0px 0px #ffffff;
+}
+
+#messageInput > textarea:focus {
+	box-shadow: 0px 0px 5px 2px #ffffff;
+}
+
+#sendContainer {
+	height: 80%;
+	font-size: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#sendContainer > button {
+	background-color: #1a1a1a;
+	border: none;
+	border-radius: 25px;
+	padding: 12px 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 200ms;
+}
+
+#sendContainer > button > svg {
+	height: 20px;
+	width: 20px;
+	transition: all 200ms;
+}
+
+#sendContainer > button:hover {
+	background-color: #ededed;
+}
+
+#sendContainer > button:hover > svg {
+	fill: #1a1a1a;
 }
