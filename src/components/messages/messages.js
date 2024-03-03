@@ -17,10 +17,6 @@ export const dynamic = 'force-dynamic'
 function PreMessages({ initialMessages, channelId }) {
 	let router = useRouter()
 
-	// setTimeout(() => {
-	// 	router.refresh()
-	// }, 250)
-
     const [incomingMessages, setIncomingMessages] = useState([])
     const [renderedInitMessages, setRenderedInitMessages] = useState([])
     const [renderedIncomingMessages, setRenderedIncomingMessages] = useState([])

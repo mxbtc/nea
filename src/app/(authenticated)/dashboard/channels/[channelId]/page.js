@@ -20,6 +20,8 @@ export const metadata = {
 
 export default async function Page ({ params }) {
 
+	
+
 	let session = await getServerSession(authOptions)
 
 	if (!session) {
