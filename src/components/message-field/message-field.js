@@ -3,7 +3,6 @@
 import styles from '@/app/(authenticated)/dashboard/channels/[channelId]/page.module.css'
 import { useEffect, useState } from 'react'
 import { SendFill } from 'react-bootstrap-icons'
-import serverAction from './serverAction'
 import { toast } from 'react-toastify'
 
 export default function MessageField({ userData, channelId }) {
