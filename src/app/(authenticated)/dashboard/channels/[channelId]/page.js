@@ -18,9 +18,7 @@ export const metadata = {
 	title: "DFS Messaging - Messages"
 }
 
-export default async function Page ({ params }) {
-
-	
+export default async function Page ({ params }) {	
 
 	let session = await getServerSession(authOptions)
 

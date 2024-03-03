@@ -14,8 +14,23 @@ import { useRouter } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
-function PreMessages({ initialMessages, channelId }) {
-	let router = useRouter()
+export default function MessagesBox({ initialMessages, channelId }) {
+
+	    useEffect(() => {
+
+		let messageHandler = (data) => {
+            setIncomingMessages(prev => [data, ...prev])
+        }
+
+        pusherClient.subscribe(channelId)
+
+        pusherClient.bind('incoming-message', messageHandler)
+    
+        return () => {
+			pusherClient.unbind('incoming-message', messageHandler)
+		  	pusherClient.unsubscribe(channelId)
+        }
+    }, [])
 
     const [incomingMessages, setIncomingMessages] = useState([])
     const [renderedInitMessages, setRenderedInitMessages] = useState([])
@@ -69,24 +84,6 @@ function PreMessages({ initialMessages, channelId }) {
 		</div>
 	}
 
-    
-
-    useEffect(() => {
-
-        pusherClient.subscribe(channelId)
-
-        let messageHandler = (data) => {
-            setIncomingMessages(prev => [data, ...prev])
-        }
-
-        pusherClient.bind('incoming-message', messageHandler)
-    
-        return () => {
-          pusherClient.unsubscribe(channelId)
-          pusherClient.unbind('incoming-message', messageHandler)
-        }
-    }, [])
-
     useEffect(() => {
 		let temp = initialMessages.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
@@ -99,19 +96,14 @@ function PreMessages({ initialMessages, channelId }) {
         setRenderedIncomingMessages(temp.map(message => messageCleaner(message)))
     }, [incomingMessages])
 
+	// setInterval(() => {
+	// 	setClock(prev => !prev)
+	// }, 3000)
+
 
     return <>
     { renderedIncomingMessages.map(message => message) }
     { renderedInitMessages.map(message => message) }
     </>
-}
 
-export default function Messages({ initialMessages, channelId }) {
-    const [client, setClient] = useState(false)
-
-    useEffect(() => {
-        setClient(true)
-    }, [])
-
-    return client && <PreMessages initialMessages={initialMessages} channelId={channelId}/>
 }
