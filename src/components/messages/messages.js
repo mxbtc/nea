@@ -10,10 +10,17 @@ import remarkGfm from 'remark-gfm'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { nanoid } from 'nanoid'
+import { useRouter } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
 function PreMessages({ initialMessages, channelId }) {
+	let router = useRouter()
+
+	// setTimeout(() => {
+	// 	router.refresh()
+	// }, 250)
+
     const [incomingMessages, setIncomingMessages] = useState([])
     const [renderedInitMessages, setRenderedInitMessages] = useState([])
     const [renderedIncomingMessages, setRenderedIncomingMessages] = useState([])
@@ -85,11 +92,15 @@ function PreMessages({ initialMessages, channelId }) {
     }, [])
 
     useEffect(() => {
-        setRenderedInitMessages(initialMessages.map(message => messageCleaner(message)))
+		let temp = initialMessages.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+        setRenderedInitMessages(temp.map(message => messageCleaner(message)))
     }, [initialMessages])
 
     useEffect(() => {
-        setRenderedIncomingMessages(incomingMessages.map(message => messageCleaner(message)))
+		let temp = incomingMessages.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+        setRenderedIncomingMessages(temp.map(message => messageCleaner(message)))
     }, [incomingMessages])
 
 

@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import { SendFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
 
+export const dynamic = 'force-dynamic'
+
 export default function MessageField({ userData, channelId }) {
 
     const useKeyboardShortcut = ( keys, callback ) => {
