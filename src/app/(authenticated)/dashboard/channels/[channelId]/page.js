@@ -12,6 +12,12 @@ import Participants from '@/../../models/Participant'
 import Messages from '@/../../models/Message'
 import Users from '@/../../models/User'
 
+// Opt out of caching for all data requests in the route segment
+export const dynamic = 'force-dynamic'
+
+export const metadata = {
+	title: "DFS Messaging - Messages"
+}
 
 export default async function Page ({ params }) {
 

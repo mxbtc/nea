@@ -80,7 +80,7 @@ function PreMessages({ initialMessages, channelId }) {
           pusherClient.unsubscribe(channelId)
           pusherClient.unbind('incoming-message', messageHandler)
         }
-    }, [incomingMessages, channelId])
+    }, [channelId])
 
     useEffect(() => {
         setRenderedInitMessages(initialMessages.map(message => messageCleaner(message)))
