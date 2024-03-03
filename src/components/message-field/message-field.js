@@ -46,6 +46,8 @@ export default function MessageField({ userData, channelId }) {
         formData.append("content", content)
         formData.append("createdAt", new Date())
 
+        setMessageInputText("")
+
         let res = await fetch("/api/messages/send", {
             cache: "no-store",
             method: "POST",
@@ -57,8 +59,6 @@ export default function MessageField({ userData, channelId }) {
         if (res.error) {
             toast.error(res.message)
         }
-
-		setMessageInputText("")
 	}
 
 	useKeyboardShortcut(["ctrl", "enter"], enterMessage);
