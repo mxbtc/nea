@@ -33,7 +33,7 @@ export async function POST(request) {
 
         let username = name
 
-        pusherServer.trigger(channelId, "incoming-message", {userId, username, email, channelId, content, createdAt: new Date(createdAt) || new Date()})
+        await pusherServer.trigger(channelId, "incoming-message", {userId, username, email, channelId, content, createdAt: new Date(createdAt) || new Date()})
 
         await connection()
 
