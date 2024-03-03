@@ -39,7 +39,19 @@ export default function MessageField({ userData, channelId }) {
 
         if (!content || !userData || !channelId) return;
 
-        let res = await serverAction({...userData, channelId: channelId, content: content, createdAt: new Date()})
+        let formData = new FormData()
+        formData.append("id", userData.id)
+        formData.append("name", userData.name)
+        formData.append("email", userData.email)
+        formData.append("channelId", channelId)
+        formData.append("content", content)
+        formData.append("createdAt", new Date())
+
+        let res = await fetch("/api/messages/send", {
+            cache: "no-store",
+            method: "POST",
+            body: formData
+        })
 
         console.log(res)
 
