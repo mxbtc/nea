@@ -27,7 +27,7 @@ export async function POST(request) {
 
         if (!channelId) return Response.json({error: true, message: "You need a channel!"});
 
-        if (content.length < 1 || content.length > 4000) {
+        if (content.length < 1 || content.length > 8000) {
             return Response.json({error: true, message: "You need content to be between 1-4000 characters!"})
         }
 
