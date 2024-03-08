@@ -70,7 +70,7 @@ export default function MessageField({ userData, channelId }) {
                 placeholder={"Enter your message..."}
                 title={"Enter your message..."}
                 onChange={e => setMessageInputText(e.target.value)}
-                maxLength={8000}
+                maxLength={4000}
                 value={messageInputText}
                 ></textarea>
                 <div id={styles.sendContainer}>

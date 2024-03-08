@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react' // both of these hooks allow us to track data and perform effects on the client side on the client side
 import styles from './form.module.css' // Imported stylesheet
 import { EyeSlashFill, EyeFill } from 'react-bootstrap-icons' // Imported icons
-import { validateUsername, validateEmail, validatePassword } from '../../../lib/utils' 
+import { validateEmail } from '../../../lib/utils' 
 // Sign in form to be returned
 function Form () {
     let [email,setEmail] = useState("") // Hook which allows to track value of email
