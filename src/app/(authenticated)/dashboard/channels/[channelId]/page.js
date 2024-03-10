@@ -26,27 +26,26 @@ export default async function Page ({ params }) {
 		redirect("/sign-in")
 	}
 
-	let channelId = params.channelId
+	let channelId = params.channelId // get channel ID from URL
 
 	await connection()
-
 	let channel = await Channels.findOne({
 		_id: channelId
 	})
-
+	// if channel is not in DB, redirect
 	if (!channel) redirect('/dashboard');
 
 	let participant = await Participants.findOne({
 		userId: session.user.id,
 		channelId: channelId
 	})
-
+	// redirect is user is not part of channel
 	if (!participant) redirect('/dashboard');
-
+	// get messages from channel from DB
 	let existingMessages = await Messages.find({
 		channelId: channelId
 	})
-
+	// join user data and message data
 	let serialisedMessages = existingMessages.map(async message => {
 		await connection()
 
@@ -66,11 +65,11 @@ export default async function Page ({ params }) {
 			}
 		}
 	})
-
+	// resolve promises
 	async function getMessages () {
 		return Promise.all(serialisedMessages)
 	} 
-
+	// reverse messages
 	serialisedMessages = (await getMessages()).reverse()
 
     return (
@@ -90,11 +89,11 @@ export default async function Page ({ params }) {
                 </div>
                 <div id={styles.container}>
 					<div id={styles.messages}>
-						{
+						{	// component which renders messages
 							<MessagesBox channelId={channelId} initialMessages={serialisedMessages}/>
 						}
 					</div>
-					<MessageField userData={session.user} channelId={channelId}/>
+					<MessageField userData={session.user} channelId={channelId}/> { /* input box */}
                 </div>
             </section>
         </>

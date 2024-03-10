@@ -1,5 +1,4 @@
 "use client"
-
 import styles from '@/app/(authenticated)/dashboard/channels/[channelId]/page.module.css'
 import { useEffect, useState } from 'react'
 import { pusherClient } from '@/../../lib/pusher'
@@ -14,7 +13,11 @@ export const dynamic = 'force-dynamic'
 
 export default function MessagesBox({ initialMessages, channelId }) {
 
-	    useEffect(() => {
+	const [incomingMessages, setIncomingMessages] = useState([])
+    const [renderedInitMessages, setRenderedInitMessages] = useState([])
+    const [renderedIncomingMessages, setRenderedIncomingMessages] = useState([])
+
+	useEffect(() => {
 
 		let messageHandler = (data) => {
             setIncomingMessages(prev => [data, ...prev])
@@ -29,10 +32,6 @@ export default function MessagesBox({ initialMessages, channelId }) {
 		  	pusherClient.unsubscribe(channelId)
         }
     }, [])
-
-    const [incomingMessages, setIncomingMessages] = useState([])
-    const [renderedInitMessages, setRenderedInitMessages] = useState([])
-    const [renderedIncomingMessages, setRenderedIncomingMessages] = useState([])
 
     let messageCleaner = (message) => {
 		return <div className={styles.message} key={nanoid() + `${new Date()}`}>
@@ -93,11 +92,6 @@ export default function MessagesBox({ initialMessages, channelId }) {
 
         setRenderedIncomingMessages(temp.map(message => messageCleaner(message)))
     }, [incomingMessages])
-
-	// setInterval(() => {
-	// 	setClock(prev => !prev)
-	// }, 3000)
-
 
     return <>
     { renderedIncomingMessages.map(message => message) }

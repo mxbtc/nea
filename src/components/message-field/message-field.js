@@ -7,11 +7,11 @@ import { toast } from 'react-toastify'
 
 export default function MessageField({ userData, channelId }) {
 
-    const useKeyboardShortcut = ( keys, callback ) => {
+    const useKeyboardShortcut = ( keys, callback ) => { // function to create shortcuts
         useEffect(() => {
             const handleKeyDown = (event) => {
                 if (
-                    keys.every(
+                    keys.every( // check if every key matches what was inputted
                         (key) =>
                         (key === "ctrl" && event.ctrlKey) ||
                         (key === "shift" && event.shiftKey) ||
@@ -19,25 +19,25 @@ export default function MessageField({ userData, channelId }) {
                         (typeof key === "string" && event.key.toLowerCase() === key)
                     )
                 ) {
-                    callback();
+                    callback(); // call passed function when buttons are pressed simultaneously
                 }
               };
       
               window.addEventListener("keydown", handleKeyDown);
       
-            return () => {
+            return () => { // when component is removed, delete event listener
                 window.removeEventListener("keydown", handleKeyDown);
             };
         }, [keys, callback]);
     };
 
-	const [messageInputText, setMessageInputText] = useState("")
+	const [messageInputText, setMessageInputText] = useState("") // track input
 	
-	async function enterMessage () {
+	async function enterMessage () { // function to send message
         let content = messageInputText
 
         if (!content || !userData || !channelId) return;
-
+        // send data to API using FormData
         let formData = new FormData()
         formData.append("id", userData.id)
         formData.append("name", userData.name)
@@ -46,27 +46,30 @@ export default function MessageField({ userData, channelId }) {
         formData.append("content", content)
         formData.append("createdAt", new Date())
 
-        setMessageInputText("")
-
+        setMessageInputText("") // reset input box
+        // cache: no-store means that data is not stored on browser
         let res = await fetch("/api/messages/send", {
             cache: "no-store",
             method: "POST",
             body: formData
         })
-
-        console.log(res)
-
+        // Send toast using provided message if there is an error
         if (res.error) {
             toast.error(res.message)
         }
 	}
 
-	useKeyboardShortcut(["ctrl", "enter"], enterMessage);
+
+    useKeyboardShortcut(["shift", "enter"], () => setMessageInputText(prev => prev + "\n"));
+	useKeyboardShortcut(["ctrl", "enter"], () => setMessageInputText(prev => prev + "\n"));
+    useKeyboardShortcut(["enter"], enterMessage); // send message when pressing enter
 
     return (
         <div id={styles.messageInputContainer} >
             <form id={styles.messageInput} action={enterMessage}>
                 <textarea name={"message"} required
+                // prevent newline when pressing enter
+                onKeyDown={e => e.key.toLowerCase() == "enter" ? e.preventDefault() : null}
                 placeholder={"Enter your message..."}
                 title={"Enter your message..."}
                 onChange={e => setMessageInputText(e.target.value)}

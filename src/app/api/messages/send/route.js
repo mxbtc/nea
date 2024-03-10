@@ -11,7 +11,7 @@ export async function POST(request) {
         if (!formData) return Response.json({ error: true, message: "No data found" });
 
         let userId = formData.get("id")
-        let name = formData.get("name")
+        let username = formData.get("name")
         let email = formData.get("email")
         let channelId = formData.get("channelId")
         let content = formData.get("content")
@@ -21,7 +21,7 @@ export async function POST(request) {
 
         if (!email) return Response.json({ error: true, message: "You need an email!" });
 
-        if (!name) return Response.json({ error: true, message: "You need a name!" });
+        if (!username) return Response.json({ error: true, message: "You need a username!" });
 
         if (!content) return Response.json({error: true, message: "You need content!"});
 
@@ -30,13 +30,11 @@ export async function POST(request) {
         if (content.length < 1 || content.length > 4000) {
             return Response.json({error: true, message: "You need content to be between 1-4000 characters!"})
         }
-
-        let username = name
-
+        // broadcasts message to online users
         await pusherServer.trigger(channelId, "incoming-message", {userId, username, email, channelId, content, createdAt: new Date(createdAt) || new Date()})
 
         await connection()
-
+        // store message in database
         await Messages.create({
             content: content,
             userId: new ObjectId(userId),
