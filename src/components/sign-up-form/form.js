@@ -44,7 +44,7 @@ function Form ({loading}) {
             setUsername(username.slice(0,35))
         }
         if (!validateUsername(username)) {
-            setUsernameValid(false)
+            return setUsernameValid(false)
         }
         setUsernameValid(true)
     }, [username])
@@ -172,7 +172,7 @@ function Form ({loading}) {
                         type={'submit'}
                         // If all requirements are not met, then the button is disabled
                         disabled={
-                            !(emailValid.valid && !emailValid.exists && usernameValid && passwordValid && password === confirmPassword) || loading
+                            !(emailValid.valid && !emailValid.exists && (usernameValid && usernameValid !== "Loading") && (passwordValid && passwordValid !== "Loading") && password === confirmPassword) || loading
                         }
                         >Sign Up</button>
                     </div>

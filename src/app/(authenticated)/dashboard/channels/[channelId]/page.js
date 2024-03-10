@@ -11,6 +11,7 @@ import Channels from '@/../../models/Channel'
 import Participants from '@/../../models/Participant'
 import Messages from '@/../../models/Message'
 import Users from '@/../../models/User'
+import mongoose from 'mongoose'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,6 +28,8 @@ export default async function Page ({ params }) {
 	}
 
 	let channelId = params.channelId // get channel ID from URL
+
+	if (!mongoose.isValidObjectId(channelId)) redirect('/dashboard');
 
 	await connection()
 	let channel = await Channels.findOne({

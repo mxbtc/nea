@@ -1,13 +1,13 @@
 "use client"
 
 import styles from '@/app/(authenticated)/dashboard/channels/[channelId]/page.module.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SendFill } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
 
 export default function MessageField({ userData, channelId }) {
 
-    const useKeyboardShortcut = ( keys, callback ) => { // function to create shortcuts
+    const useKeyboardShortcut = ( keys, callback, ref) => { // function to create shortcuts
         useEffect(() => {
             const handleKeyDown = (event) => {
                 if (
@@ -19,16 +19,23 @@ export default function MessageField({ userData, channelId }) {
                         (typeof key === "string" && event.key.toLowerCase() === key)
                     )
                 ) {
-                    callback(); // call passed function when buttons are pressed simultaneously
+                    callback(event); // call passed function when buttons are pressed simultaneously
                 }
               };
-      
-              window.addEventListener("keydown", handleKeyDown);
-      
-            return () => { // when component is removed, delete event listener
-                window.removeEventListener("keydown", handleKeyDown);
-            };
-        }, [keys, callback]);
+              if (ref) {
+                if (ref.current) {
+                    ref.current.addEventListener("keydown", handleKeyDown)
+
+                    return () => { // when component is removed, delete event listener
+                        try {
+                            ref.current.removeEventListener("keydown", handleKeyDown);
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    };
+                }
+              }
+        }, [keys, callback, ref]);
     };
 
 	const [messageInputText, setMessageInputText] = useState("") // track input
@@ -59,17 +66,38 @@ export default function MessageField({ userData, channelId }) {
         }
 	}
 
+    const textArea = useRef(null)
 
-    useKeyboardShortcut(["shift", "enter"], () => setMessageInputText(prev => prev + "\n"));
-	useKeyboardShortcut(["ctrl", "enter"], () => setMessageInputText(prev => prev + "\n"));
-    useKeyboardShortcut(["enter"], enterMessage); // send message when pressing enter
+    function makeNewLine(e) {
+        e.preventDefault()
+
+        let { selectionStart, selectionEnd } = e.target
+
+        let newInputValue = messageInputText.substring(0, selectionStart) + "\n" + messageInputText.substring(selectionEnd)
+
+        setMessageInputText(newInputValue)
+
+        if (textArea.current) {
+            textArea.current.value = newInputValue
+            textArea.current.selectionStart = textArea.current.selectionEnd = selectionStart + 1
+        }
+    }
+
+    useKeyboardShortcut(["shift", "enter"], makeNewLine, textArea); // make new line
+	useKeyboardShortcut(["ctrl", "enter"], makeNewLine, textArea); // make new line
+    useKeyboardShortcut(["enter"], enterMessage, textArea); // send message when pressing enter
 
     return (
         <div id={styles.messageInputContainer} >
             <form id={styles.messageInput} action={enterMessage}>
                 <textarea name={"message"} required
                 // prevent newline when pressing enter
-                onKeyDown={e => e.key.toLowerCase() == "enter" ? e.preventDefault() : null}
+                ref={textArea}
+                onKeyDown={e => {
+                    if (e.key.toLowerCase() == "enter") {
+                        e.preventDefault()
+                    }
+                }}
                 placeholder={"Enter your message..."}
                 title={"Enter your message..."}
                 onChange={e => setMessageInputText(e.target.value)}
